@@ -1,0 +1,107 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>郭氏推拿</title>
+    <!-- Bootstrap core CSS -->
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../static/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="container">
+    <!-- Static navbar -->
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="http://192.168.3.9:8080/user/login">返回</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="http://192.168.3.9:8080/order/jishi">技师管理</a></li>
+                    <li><a href="http://192.168.3.9:8080/order/project">项目管理</a></li>
+                    <li><a href="http://192.168.3.9:8080/order/baobiao">报表管理</a></li>
+                </ul>
+            </div><!--/.nav-collapse -->
+        </div><!--/.container-fluid -->
+    </nav>
+</div> <!-- /container -->
+{{/*<input size="16" type="text" id="datetimeStart" readonly class="form_datetime">*/}}
+{{/*<input size="16" type="text" id="datetimeEnd" readonly class="form_datetime">*/}}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-3">
+        </div>
+        <div class="col-lg-3">
+            <label for="userId">开始时间</label>
+            <input size="16" type="text" id="datetimeStart" readonly class="form_datetime">
+        </div>
+        <div class="col-lg-3">
+            <label for="userId">结束时间</label>
+            <input size="16" type="text" id="datetimeEnd" readonly class="form_datetime">
+        </div>
+        <div class="col-lg-3">
+            <button type="button" class="btn btn-primary btn-sm" onclick="downLoad()">下载</button>
+        </div>
+
+    </div>
+</div>
+
+<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+<script src="../static/js/jquery.min.js"></script>
+<!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+<script src="../static/js/bootstrap.min.js"></script>
+<script src="../static/js/bootstrap-datetimepicker.js"></script>
+<script src="../static/js/bootstrap-datetimepicker.zh-CN.js"></script>
+</body>
+</html>
+<script>
+    $('.date').datetimepicker({
+        language: 'zh-CN',//显示中文
+        format: 'yyyy-mm-dd',//显示格式
+        minView: "month",//设置只显示到月份
+        initialDate: new Date(),//初始化当前日期
+        autoclose: true,//选中自动关闭
+        todayBtn: true//显示今日按钮
+    })
+</script>
+<script type="text/javascript">
+    $("#datetimeStart").datetimepicker({
+        format: 'yyyy-mm-dd',
+        minView:'month',
+        language: 'zh-CN',
+        autoclose:true
+    }).on("click",function(){
+        $('#datetimepicker').datetimepicker('setStartDate', '2018-01-01');
+    });
+
+
+    $("#datetimeEnd").datetimepicker({
+        format: 'yyyy-mm-dd',
+        minView:'month',
+        language: 'zh-CN',
+        autoclose:true,
+        startDate:new Date()
+    }).on("click",function(){
+    });
+</script>
+<script>
+    function downLoad() {
+        var timeBegin = $('#datetimeStart').val();
+        var timeEnd = $('#datetimeEnd').val();
+        window.location.href = "http://192.168.3.9:10088/guoshi/api/v1/order/download?begin="+timeBegin+"&end="+timeEnd;
+    }
+</script>

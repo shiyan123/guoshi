@@ -1,0 +1,13 @@
+{
+  "server": {
+    "address": "",
+    "port": 10088
+  },
+  "mySqlGc":"root:Hortor2014@tcp(10.66.234.223:3306)/gc2?charset=utf8",
+  "roMySqlGc":"root:Hortor2014@tcp(10.66.234.223:3306)/gc2?charset=utf8",
+  "mongo":"mongodb://mongouser:Hortor2014@10.66.234.196:27017/admin?maxPoolSize=64",
+  "redis": {
+    "redisAddr":"10.66.152.132:6379",
+    "redisPwd": "Hortor2014"
+  }
+}

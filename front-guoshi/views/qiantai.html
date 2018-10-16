@@ -1,0 +1,227 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>郭氏推拿</title>
+    <!-- Bootstrap core CSS -->
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="container">
+    <!-- Static navbar -->
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="http://192.168.3.9:8080/user/login">返回</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="http://192.168.3.9:8080/order/qiantai">前台</a></li>
+                </ul>
+            </div><!--/.nav-collapse -->
+        </div><!--/.container-fluid -->
+    </nav>
+</div> <!-- /container -->
+<div class="container-fluid">
+    <div class="row">
+        <div class="">
+            <h4 class="sub-header">未结账订单</h4>
+            <div class="row">
+                    <div class="col-lg-6">
+                        <div class="input-group">
+                            <input id= "userNumber" type="text" class="form-control" placeholder="请输入技师编号">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button" onclick="javascript:window.location.href='http://192.168.3.9:8080/order/qiantai?userNumber='+$('#userNumber').val()">点击查询</button>
+                            </span>
+                        </div>
+                    </div>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>序号</th>
+                        <th>订单编号</th>
+                        <th style="display: none">订单ID</th>
+                        <th>技师编号</th>
+                        <th style="display: none">项目编号</th>
+                        <th>项目名称</th>
+                        <th>项目金额</th>
+                        <th>下单时间</th>
+                        <th>点钟</th>
+                        <th>结账</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {{range .QianTaiOrder}}
+                    <tr>
+                        <td>{{ .Id }}</td>
+                        <td>{{ .OrderNumber }}</td>
+                        <td style="display: none">{{ .OrderId }}</td>
+                        <td>{{ .UserNumber }}</td>
+                        <td style="display: none">{{ .ProjectId }}</td>
+                        <td>{{ .ProjectName }}</td>
+                        <td>{{ .Money }}</td>
+                        <td>{{ .CreatedAt }}</td>
+                        <td><div class="checkbox">
+                            <label>
+                                <input type="checkbox" name= "check-projectId" value="{{ .ProjectId }}">
+                                点钟
+                            </label>
+                        </div></td>
+                        <td><div class="checkbox">
+                            <label>
+                                <input type="checkbox" name= "check-orderId" value="{{ .OrderId }}">
+                                结账
+                            </label>
+                        </div></td>
+                        <td>
+                            <button type="button" class="btn btn-primary btn-sm" onclick="deletedPro('{{ .OrderId }}', '{{ .ProjectId }}')">删除</button>
+                        </td>
+                    </tr>
+                    {{end}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="col-lg-2">
+                <label>会员</label>
+                <input id="huiyuan" type="text" value="" class="form-control" onkeyup="value=value.replace(/[^\d\.]/g,'')" onblur="value=value.replace(/[^\d\.]/g,'')">
+            </div>
+            <div class="col-lg-2">
+                <label>微信</label>
+                <input id="weixin" type="text" value="" class="form-control" onkeyup="value=value.replace(/[^\d\.]/g,'')" onblur="value=value.replace(/[^\d\.]/g,'')">
+            </div>
+            <div class="col-lg-2">
+                <label>支付宝</label>
+                <input id="zhifubao" type="text" value="" class="form-control" onkeyup="value=value.replace(/[^\d\.]/g,'')" onblur="value=value.replace(/[^\d\.]/g,'')">
+            </div>
+            <div class="col-lg-2">
+                <label>现金</label>
+                <input id="xianjin" type="text" value="" class="form-control" onkeyup="value=value.replace(/[^\d\.]/g,'')" onblur="value=value.replace(/[^\d\.]/g,'')">
+            </div>
+            <div class="col-lg-2">
+                <label>团购</label>
+                <input id="tuangou" type="text" value="" class="form-control" onkeyup="value=value.replace(/[^\d\.]/g,'')" onblur="value=value.replace(/[^\d\.]/g,'')">
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="col-lg-3">
+            </div>
+            <div class="col-lg-3">
+            </div>
+            <div class="col-lg-3">
+            </div>
+            <div class="col-lg-3">
+                <button type="button" class="btn btn-primary btn-lg" onclick="jiezhang()">确定收款</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+<script src="../static/js/jquery.min.js"></script>
+<!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+<script src="../static/js/bootstrap.min.js"></script>
+</body>
+</html>
+<script>
+    function jiezhang() {
+        var projectIds =[];
+        $('input[name="check-projectId"]:checked').each(function(){
+            projectIds.push($(this).val());
+        });
+
+        var orderIds =[];
+        $('input[name="check-orderId"]:checked').each(function(){
+            if ($.inArray($(this).val(), orderIds) == -1){
+                orderIds.push($(this).val());
+            }
+        });
+        if (orderIds.length == 0) {
+            alert("请选择要结账的订单")
+            return
+        }
+        if (orderIds.length >= 2){
+            alert("只能同时结算一笔订单")
+            return
+        }
+        var orderIdStr = orderIds[0];
+        var isMember = 0;
+
+        var isMembers = [];
+        $('input[name="isMember"]:checked').each(function(){
+            isMembers.push($(this).val());
+        });
+        if (isMembers.length > 0) {
+            isMember = 1
+        }
+        var huiyuan = $("#huiyuan").val();
+        var weixin = $("#weixin").val();
+        var zhifubao = $("#zhifubao").val();
+        var xianjin = $("#xianjin").val();
+        var tuangou = $("#tuangou").val();
+        var realMoney = Number(huiyuan) + Number(weixin) + Number(zhifubao) + Number(xianjin) + Number(tuangou);
+        var json = {
+                "huiYuan":Number(huiyuan),
+                "weiXin":Number(weixin),
+                "zhiFuBao":Number(zhifubao),
+                "xianJin":Number(xianjin),
+                "tuanGou":Number(tuangou),
+                "orderId":orderIdStr,
+                "isMember":isMember,
+                "realMoney":realMoney,
+                "dianZhongProJectIds":projectIds
+            };
+        $.ajax({
+            type: "POST",
+            url: "http://192.168.3.9:10088/guoshi/api/v1/order/pay",
+            data:JSON.stringify(json),
+            contentType: "application/json; charset=utf-8",
+            dataType:"json",
+            success: function(data){
+               if (data["meta"]["errCode"]==0) {
+                   window.location.reload()
+               }else{
+                   alert("结账失败")
+               }
+            }
+        });
+
+    }
+</script>        
+<script>
+    function deletedPro(orderId, projectId) {
+        $.get({
+            type: "GET",
+            url: "http://192.168.3.9:10088/guoshi/api/v1/order/deleted?orderId="+orderId+"&projectId=" + projectId,
+            success: function(data){
+                console.log(data["data"])
+                if (data["meta"]["errCode"] == 0) {
+                    window.location.reload();
+                }else{
+                    alert("更新失败")
+                }
+            }
+        });
+    }
+</script>

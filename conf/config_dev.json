@@ -1,0 +1,7 @@
+{
+  "server": {
+    "address": "",
+    "port": 10088
+  },
+  "mongoUrl":"mongodb://admin:123456@127.0.0.1:27017/admin?maxPoolSize=64"
+}
