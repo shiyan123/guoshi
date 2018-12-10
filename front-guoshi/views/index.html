@@ -67,7 +67,7 @@
     <div class="jumbotron">
         <div style = "text-align:right;">
             <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal" onclick="">查看工资</button>
-            <button type="button" class="btn btn-primary btn-sm" onclick="javascript:window.location.href='http://47.94.140.226:8080/jishi/notPay?userNumber='+$('#userNumber').val()">未结账订单</button>
+            <button type="button" class="btn btn-primary btn-sm" onclick="javascript:window.location.href='http://47.94.140.226/jishi/notPay?userNumber='+$('#userNumber').val()">未结账订单</button>
         </div>
 
         <form role="form" id="checkProject">
@@ -75,7 +75,7 @@
     </div>
     <div class="row">
         <button type="button" class="btn btn-primary btn-lg btn-block" onclick="createdOrder()">确定</button>
-        <button type="button" class="btn btn-primary btn-lg btn-block" onclick="javascript:window.location.href='http://47.94.140.226:8080/jishi'">取消</button>
+        <button type="button" class="btn btn-primary btn-lg btn-block" onclick="javascript:window.location.href='http://47.94.140.226/jishi'">取消</button>
     </div>
     <footer class="footer">
         <p>&copy; 2016 Company, guoshi.</p>
@@ -168,7 +168,7 @@
 </script>
 <script>
     function tizhuan() {
-        window.location.href = "http://47.94.140.226:8080/jishi/notPay?userNumber=" + $('#userNumber').val();
+        window.location.href = "http://47.94.140.226/jishi/notPay?userNumber=" + $('#userNumber').val();
     }
 </script>
 
@@ -182,7 +182,7 @@
             success: function(data){
                 console.log(data["data"])
                 if (data["meta"]["errCode"] == 0) {
-                    window.location.href = "http://47.94.140.226:8080/jishi/pay?userNumber=" + $('#userNumber').val() + "&day=1";
+                    window.location.href = "http://47.94.140.226/jishi/pay?userNumber=" + $('#userNumber').val() + "&day=1";
                 }else{
                     alert("密码错误")
                 }
