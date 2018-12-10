@@ -67,7 +67,7 @@
     <div class="jumbotron">
         <div style = "text-align:right;">
             <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal" onclick="">查看工资</button>
-            <button type="button" class="btn btn-primary btn-sm" onclick="javascript:window.location.href='http://192.168.3.9:8080/jishi/notPay?userNumber='+$('#userNumber').val()">未结账订单</button>
+            <button type="button" class="btn btn-primary btn-sm" onclick="javascript:window.location.href='http://127.0.0.1:8080/jishi/notPay?userNumber='+$('#userNumber').val()">未结账订单</button>
         </div>
 
         <form role="form" id="checkProject">
@@ -75,7 +75,7 @@
     </div>
     <div class="row">
         <button type="button" class="btn btn-primary btn-lg btn-block" onclick="createdOrder()">确定</button>
-        <button type="button" class="btn btn-primary btn-lg btn-block" onclick="javascript:window.location.href='http://192.168.3.9:8080/jishi'">取消</button>
+        <button type="button" class="btn btn-primary btn-lg btn-block" onclick="javascript:window.location.href='http://127.0.0.1:8080/jishi'">取消</button>
     </div>
     <footer class="footer">
         <p>&copy; 2016 Company, guoshi.</p>
@@ -126,7 +126,7 @@
         document.getElementById("projects").style.display="block";
         $.get({
             type: "GET",
-            url: "http://192.168.3.9:10088/guoshi/api/v1/project/list",
+            url: "http://127.0.0.1:10088/guoshi/api/v1/project/list",
             dataType:"json",
             cache:false,
             success: function(data){
@@ -152,7 +152,7 @@
         }
         $.get({
             type: "POST",
-            url: "http://192.168.3.9:10088/guoshi/api/v1/order",
+            url: "http://127.0.0.1:10088/guoshi/api/v1/order",
             data:JSON.stringify({"userNumber":userNumber,"projectIds":chk_value}),
             contentType: "application/json; charset=utf-8",
             success: function(data){
@@ -168,7 +168,7 @@
 </script>
 <script>
     function tizhuan() {
-        window.location.href = "http://192.168.3.9:8080/jishi/notPay?userNumber=" + $('#userNumber').val();
+        window.location.href = "http://127.0.0.1:8080/jishi/notPay?userNumber=" + $('#userNumber').val();
     }
 </script>
 
@@ -178,11 +178,11 @@
         var pwd = $('#pwd').val();
         $.get({
             type: "GET",
-            url: "http://192.168.3.9:10088/guoshi/api/v1/user/user/login?userNumber=" + userNumber + "&pwd=" + pwd,
+            url: "http://127.0.0.1:10088/guoshi/api/v1/user/user/login?userNumber=" + userNumber + "&pwd=" + pwd,
             success: function(data){
                 console.log(data["data"])
                 if (data["meta"]["errCode"] == 0) {
-                    window.location.href = "http://192.168.3.9:8080/jishi/pay?userNumber=" + $('#userNumber').val() + "&day=1";
+                    window.location.href = "http://127.0.0.1:8080/jishi/pay?userNumber=" + $('#userNumber').val() + "&day=1";
                 }else{
                     alert("密码错误")
                 }

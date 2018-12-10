@@ -26,11 +26,11 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="http://192.168.3.9:8080/user/login">返回</a>
+                <a class="navbar-brand" href="http://127.0.0.1:8080/user/login">返回</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="http://192.168.3.9:8080/order/qiantai">前台</a></li>
+                    <li><a href="http://127.0.0.1:8080/order/qiantai">前台</a></li>
                 </ul>
             </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->
@@ -45,7 +45,7 @@
                         <div class="input-group">
                             <input id= "userNumber" type="text" class="form-control" placeholder="请输入技师编号">
                             <span class="input-group-btn">
-                                <button class="btn btn-default" type="button" onclick="javascript:window.location.href='http://192.168.3.9:8080/order/qiantai?userNumber='+$('#userNumber').val()">点击查询</button>
+                                <button class="btn btn-default" type="button" onclick="javascript:window.location.href='http://127.0.0.1:8080/order/qiantai?userNumber='+$('#userNumber').val()">点击查询</button>
                             </span>
                         </div>
                     </div>
@@ -194,7 +194,7 @@
             };
         $.ajax({
             type: "POST",
-            url: "http://192.168.3.9:10088/guoshi/api/v1/order/pay",
+            url: "http://127.0.0.1:10088/guoshi/api/v1/order/pay",
             data:JSON.stringify(json),
             contentType: "application/json; charset=utf-8",
             dataType:"json",
@@ -213,7 +213,7 @@
     function deletedPro(orderId, projectId) {
         $.get({
             type: "GET",
-            url: "http://192.168.3.9:10088/guoshi/api/v1/order/deleted?orderId="+orderId+"&projectId=" + projectId,
+            url: "http://127.0.0.1:10088/guoshi/api/v1/order/deleted?orderId="+orderId+"&projectId=" + projectId,
             success: function(data){
                 console.log(data["data"])
                 if (data["meta"]["errCode"] == 0) {
