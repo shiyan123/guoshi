@@ -1,6 +1,6 @@
 {
   "server": {
-    "address": "",
+    "address": "0.0.0.0",
     "port": 10088
   },
   "mySqlGc":"root:Hortor2014@tcp(10.66.234.223:3306)/gc2?charset=utf8",
