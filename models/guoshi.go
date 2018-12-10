@@ -8,7 +8,7 @@ const (
 	User_C     = "users"
 	Project_C  = "project"
 	Order_C    = "order"
-	User_Pro_C = "user-pro"
+	User_Pro_C = "userpro"
 )
 
 type User struct {
