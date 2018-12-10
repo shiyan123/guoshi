@@ -126,7 +126,7 @@
         document.getElementById("projects").style.display="block";
         $.get({
             type: "GET",
-            url: "http://127.0.0.1:10088/guoshi/api/v1/project/list",
+            url: "http://47.94.140.226/guoshi/api/v1/project/list",
             dataType:"json",
             cache:false,
             success: function(data){
@@ -152,7 +152,7 @@
         }
         $.get({
             type: "POST",
-            url: "http://127.0.0.1:10088/guoshi/api/v1/order",
+            url: "http://47.94.140.226/guoshi/api/v1/order",
             data:JSON.stringify({"userNumber":userNumber,"projectIds":chk_value}),
             contentType: "application/json; charset=utf-8",
             success: function(data){
@@ -178,7 +178,7 @@
         var pwd = $('#pwd').val();
         $.get({
             type: "GET",
-            url: "http://127.0.0.1:10088/guoshi/api/v1/user/user/login?userNumber=" + userNumber + "&pwd=" + pwd,
+            url: "http://47.94.140.226/guoshi/api/v1/user/user/login?userNumber=" + userNumber + "&pwd=" + pwd,
             success: function(data){
                 console.log(data["data"])
                 if (data["meta"]["errCode"] == 0) {
