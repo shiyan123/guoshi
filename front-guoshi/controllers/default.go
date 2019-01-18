@@ -283,7 +283,7 @@ func (c *JiShiPayController) Get() {
 		end = now.Unix()
 	}
 	if month != "" {
-		begin = time.Date(now.Year(), now.Month(), 0, 0, 0, 0, 0, time.Local).Unix()
+		begin = time.Date(now.Year(), now.Month(), 1, 0, 0, 0, 0, time.Local).Unix()
 		end = now.Unix()
 	}
 	body, err := HttpGet(fmt.Sprintf("http://47.94.140.226/guoshi/api/v1/order/wage?begin=%s&end=%s&userNumber=%s", strconv.Itoa(int(begin)), strconv.Itoa(int(end)), userNumber))
