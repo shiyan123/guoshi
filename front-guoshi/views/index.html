@@ -37,6 +37,14 @@
           margin: 12px 0 0;
 
       }
+      .my_item{
+          display: inline-block;
+          width: 30%;
+          font-size: 18px;
+          height: 35px;
+          line-height: 35px;
+          vertical-align: middle;
+      }
   </style>
 </head>
 <body>
@@ -130,10 +138,13 @@
             dataType:"json",
             cache:false,
             success: function(data){
-                var html = '';
+                var html = '<div class="row">-</div>';
+                var content = '';
+                var a = 1;
                 $.each(data["data"], function(commentIndex, comment){
-                    html += '<div class="row"><div class="col-md-12 input-lg"><label class="checkbox-inline"><input type="checkbox" value="'+comment["id"]+'" name="project-check">'+comment["name"]+'</label> </div></div>';
+                    content += '<div class="col-md-4 input-lg my_item"><label class="checkbox-inline"><input type="checkbox" value="'+comment["id"]+'" name="project-check">'+comment["name"]+'</label></div>';
                 });
+                html = html.replace(/-/g,content)
                 $('#checkProject').html(html);
             }
         });
