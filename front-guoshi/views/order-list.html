@@ -262,9 +262,7 @@
                         commentIndex = commentIndex + 1;
                         html += '<label for="1">项目'+commentIndex+'</label><input style="display: none" id="project'+commentIndex+'" class="form-control input-lg" type="text" value="'+comment["id"]+'">' +
                                 '<label for="2">-项目名称</label>'+
-                                '<input id="project-name'+commentIndex+'" class="form-control input-lg" type="text" value="'+comment["name"]+'" disabled>'+
-                                '<label for="3">项目金额</label>'+
-                                '<input id="project-money'+commentIndex+'" class="form-control input-lg" type="text" value="'+comment["money"]+'" disabled>';
+                                '<input id="project-name'+commentIndex+'" class="form-control input-lg" type="text" value="'+comment["name"]+'" disabled>'
                     });
                     $('#projects-list').html(html);
                     $('#myModal').modal('show');
