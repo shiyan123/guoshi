@@ -5,19 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="33ecf92d-7359-4801-9047-b46fe86780c9" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/front-guoshi/views/order-list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-guoshi/controllers/default.go" beforeDir="false" afterPath="$PROJECT_DIR$/front-guoshi/controllers/default.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-guoshi/routers/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/front-guoshi/routers/router.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-guoshi/views/baobiao.html" beforeDir="false" afterPath="$PROJECT_DIR$/front-guoshi/views/baobiao.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-guoshi/views/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/front-guoshi/views/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-guoshi/views/jishi.html" beforeDir="false" afterPath="$PROJECT_DIR$/front-guoshi/views/jishi.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-guoshi/views/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/front-guoshi/views/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-guoshi/views/order.html" beforeDir="false" afterPath="$PROJECT_DIR$/front-guoshi/views/order.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-guoshi/views/project.html" beforeDir="false" afterPath="$PROJECT_DIR$/front-guoshi/views/project.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front-guoshi/views/qiantai.html" beforeDir="false" afterPath="$PROJECT_DIR$/front-guoshi/views/qiantai.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/guoshi.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/guoshi.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routers/v1/order.go" beforeDir="false" afterPath="$PROJECT_DIR$/routers/v1/order.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -75,6 +63,51 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
+      <file leaf-file-name="jishi.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/front-guoshi/views/jishi.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1026">
+              <caret line="54" column="18" lean-forward="true" selection-start-line="54" selection-start-column="18" selection-end-line="54" selection-end-column="18" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="default.go" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/front-guoshi/controllers/default.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="263">
+              <caret line="186" column="86" lean-forward="true" selection-start-line="186" selection-start-column="78" selection-end-line="186" selection-end-column="86" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="user.go" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/routers/v1/user.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="669">
+              <caret line="124" column="35" lean-forward="true" selection-start-line="124" selection-start-column="35" selection-end-line="124" selection-end-column="35" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="guoshi.go" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/models/guoshi.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="152">
+              <caret line="10" column="27" lean-forward="true" selection-start-line="10" selection-start-column="27" selection-end-line="10" selection-end-column="27" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="router.go" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/front-guoshi/routers/router.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="247">
+              <caret line="16" column="56" selection-start-line="16" selection-start-column="56" selection-end-line="16" selection-end-column="56" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="baobiao.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/front-guoshi/views/baobiao.html">
           <provider selected="true" editor-type-id="text-editor">
@@ -84,11 +117,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/front-guoshi/views/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="514">
-              <caret line="183" column="9" lean-forward="true" selection-start-line="183" selection-start-column="9" selection-end-line="183" selection-end-column="9" />
+            <state relative-caret-position="327">
+              <caret line="136" column="18" selection-start-line="136" selection-start-column="18" selection-end-line="136" selection-end-column="18" />
             </state>
           </provider>
         </entry>
@@ -105,7 +138,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>projectIds</find>
       <find>/order/pa</find>
       <find>check-projectId</find>
       <find>http://192.168.0.18</find>
@@ -125,7 +157,6 @@
       <find>JiShiPayController</find>
       <find>month</find>
       <find>http://47.94.140.226</find>
-      <find>http://127.0.0.1:10088</find>
       <find>http://127.0.0.1:8080/guoshi/api/v1</find>
       <find>OrderListController</find>
       <find>timeBegin</find>
@@ -135,6 +166,8 @@
       <find>order-userId</find>
       <find>pro</find>
       <find>http://127.0.0.1:8080</find>
+      <find>http://127.0.0.1:10088</find>
+      <find>OrderJishiController</find>
     </findStrings>
     <replaceStrings>
       <replace>http://192.168.1.102</replace>
@@ -202,10 +235,10 @@
         <option value="$PROJECT_DIR$/front-guoshi/views/login.html" />
         <option value="$PROJECT_DIR$/front-guoshi/views/jishi.html" />
         <option value="$PROJECT_DIR$/front-guoshi/controllers/default.go" />
-        <option value="$PROJECT_DIR$/models/guoshi.go" />
         <option value="$PROJECT_DIR$/front-guoshi/views/order-list.html" />
         <option value="$PROJECT_DIR$/routers/v1/order.go" />
         <option value="$PROJECT_DIR$/front-guoshi/views/index.html" />
+        <option value="$PROJECT_DIR$/models/guoshi.go" />
       </list>
     </option>
   </component>
@@ -247,7 +280,30 @@
               <item name="guoshi" type="b2602c69:ProjectViewProjectNode" />
               <item name="guoshi" type="462c0819:PsiDirectoryNode" />
               <item name="front-guoshi" type="462c0819:PsiDirectoryNode" />
+              <item name="controllers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="guoshi" type="b2602c69:ProjectViewProjectNode" />
+              <item name="guoshi" type="462c0819:PsiDirectoryNode" />
+              <item name="front-guoshi" type="462c0819:PsiDirectoryNode" />
+              <item name="routers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="guoshi" type="b2602c69:ProjectViewProjectNode" />
+              <item name="guoshi" type="462c0819:PsiDirectoryNode" />
+              <item name="front-guoshi" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="guoshi" type="b2602c69:ProjectViewProjectNode" />
+              <item name="guoshi" type="462c0819:PsiDirectoryNode" />
+              <item name="routers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="guoshi" type="b2602c69:ProjectViewProjectNode" />
+              <item name="guoshi" type="462c0819:PsiDirectoryNode" />
+              <item name="routers" type="462c0819:PsiDirectoryNode" />
+              <item name="v1" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -510,13 +566,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routers/v1/user.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="18" column="5" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/front-guoshi/views/pay.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="737">
@@ -538,13 +587,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/front-guoshi/routers/router.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="18" column="53" selection-start-line="18" selection-start-column="53" selection-end-line="18" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/front-guoshi/views/project.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="506">
@@ -556,20 +598,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-199">
           <caret line="39" column="21" selection-start-line="39" selection-start-column="21" selection-end-line="39" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/front-guoshi/views/jishi.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="452">
-          <caret line="45" column="12" selection-start-line="45" selection-start-column="12" selection-end-line="54" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/front-guoshi/controllers/default.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="487">
-          <caret line="352" column="33" selection-start-line="352" selection-start-column="33" selection-end-line="352" selection-end-column="33" />
         </state>
       </provider>
     </entry>
@@ -607,13 +635,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/models/guoshi.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="551">
-          <caret line="57" column="46" selection-start-line="57" selection-start-column="38" selection-end-line="57" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/consts/err.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="190">
@@ -647,8 +668,43 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/front-guoshi/views/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="514">
-          <caret line="183" column="9" lean-forward="true" selection-start-line="183" selection-start-column="9" selection-end-line="183" selection-end-column="9" />
+        <state relative-caret-position="327">
+          <caret line="136" column="18" selection-start-line="136" selection-start-column="18" selection-end-line="136" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/front-guoshi/views/jishi.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1026">
+          <caret line="54" column="18" lean-forward="true" selection-start-line="54" selection-start-column="18" selection-end-line="54" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/front-guoshi/routers/router.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="16" column="56" selection-start-line="16" selection-start-column="56" selection-end-line="16" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/front-guoshi/controllers/default.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="263">
+          <caret line="186" column="86" lean-forward="true" selection-start-line="186" selection-start-column="78" selection-end-line="186" selection-end-column="86" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/guoshi.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="10" column="27" lean-forward="true" selection-start-line="10" selection-start-column="27" selection-end-line="10" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routers/v1/user.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="669">
+          <caret line="124" column="35" lean-forward="true" selection-start-line="124" selection-start-column="35" selection-end-line="124" selection-end-column="35" />
         </state>
       </provider>
     </entry>
