@@ -158,7 +158,7 @@ func (c *OrderListController) Get() {
 	timeStr := c.Ctx.Request.URL.Query().Get("timeStr")
 	var data OrderResp
 	if userNumber != "" && timeStr != "" {
-		body, err := HttpGet(fmt.Sprintf("http://127.0.0.1:10088/guoshi/api/v1/order/order-list?userNumber=%s&timeStr=%s", userNumber, timeStr))
+		body, err := HttpGet(fmt.Sprintf("http://47.94.140.226/guoshi/api/v1/order/order-list?userNumber=%s&timeStr=%s", userNumber, timeStr))
 		if err != nil {
 			return
 		}
@@ -184,7 +184,7 @@ func (c *OrderBaoBiaoController) Get() {
 
 func (c *OrderJishiController) Get() {
 	userNumber := c.Ctx.Request.URL.Query().Get("userNumber")
-	body, err := HttpGet(fmt.Sprintf("http://127.0.0.1:10088/guoshi/api/v1/user/user-pro?number=%s", userNumber))
+	body, err := HttpGet(fmt.Sprintf("http://47.94.140.226/guoshi/api/v1/user/user-pro?number=%s", userNumber))
 	if err != nil {
 		return
 	}
@@ -194,7 +194,7 @@ func (c *OrderJishiController) Get() {
 	c.Data["UserInfo"] = data.Data.UserInfo
 	c.Data["UserProjects"] = data.Data.UserProjects
 
-	body, err = HttpGet("http://127.0.0.1:10088/guoshi/api/v1/project/list")
+	body, err = HttpGet("http://47.94.140.226/guoshi/api/v1/project/list")
 	if err != nil {
 		return
 	}
@@ -205,7 +205,7 @@ func (c *OrderJishiController) Get() {
 }
 
 func (c *OrderProjectController) Get() {
-	body, err := HttpGet("http://127.0.0.1:10088/guoshi/api/v1/project/list")
+	body, err := HttpGet("http://47.94.140.226/guoshi/api/v1/project/list")
 	if err != nil {
 		return
 	}
@@ -222,7 +222,7 @@ func (c *UserLoginController) Get() {
 func (c *OrderQianTaiController) Get() {
 	userNumber := c.Ctx.Request.URL.Query().Get("userNumber")
 	fmt.Println(userNumber)
-	body, err := HttpGet(fmt.Sprintf("http://127.0.0.1:10088/guoshi/api/v1/order/user?number=%s", userNumber))
+	body, err := HttpGet(fmt.Sprintf("http://47.94.140.226/guoshi/api/v1/order/user?number=%s", userNumber))
 	if err != nil {
 		return
 	}
@@ -255,7 +255,7 @@ func (c *OrderIndexController) Get() {
 	userNumber := c.Ctx.Request.URL.Query().Get("userNumber")
 	pwd := c.Ctx.Request.URL.Query().Get("pwd")
 
-	body, err := HttpGet(fmt.Sprintf("http://127.0.0.1:10088/guoshi/api/v1/user/user/login?userNumber=%s&pwd=%s", userNumber, pwd))
+	body, err := HttpGet(fmt.Sprintf("http://47.94.140.226/guoshi/api/v1/user/user/login?userNumber=%s&pwd=%s", userNumber, pwd))
 	if err != nil {
 		return
 	}
@@ -273,7 +273,7 @@ func (c *JiShiController) Get() {
 func (c *JiShiNotPayController) Get() {
 	userNumber := c.Ctx.Request.URL.Query().Get("userNumber")
 	fmt.Println(userNumber)
-	body, err := HttpGet(fmt.Sprintf("http://127.0.0.1:10088/guoshi/api/v1/order/user?number=%s", userNumber))
+	body, err := HttpGet(fmt.Sprintf("http://47.94.140.226/guoshi/api/v1/order/user?number=%s", userNumber))
 	if err != nil {
 		return
 	}
@@ -317,7 +317,7 @@ func (c *JiShiPayController) Get() {
 		begin = time.Date(now.Year(), now.Month(), 1, 0, 0, 0, 0, time.Local).Unix()
 		end = now.Unix()
 	}
-	body, err := HttpGet(fmt.Sprintf("http://127.0.0.1:10088/guoshi/api/v1/order/wage?begin=%s&end=%s&userNumber=%s", strconv.Itoa(int(begin)), strconv.Itoa(int(end)), userNumber))
+	body, err := HttpGet(fmt.Sprintf("http://47.94.140.226/guoshi/api/v1/order/wage?begin=%s&end=%s&userNumber=%s", strconv.Itoa(int(begin)), strconv.Itoa(int(end)), userNumber))
 	if err != nil {
 		return
 	}

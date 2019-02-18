@@ -153,7 +153,7 @@
     function addProjects() {
         $.get({
             type: "GET",
-            url: "http://127.0.0.1:10088/guoshi/api/v1/project/list",
+            url: "http://47.94.140.226/guoshi/api/v1/project/list",
             success: function(data){
                 if (data["meta"]["errCode"] == 0) {
                     var html = '<div name="project-detail"><input type="checkbox">是否点钟' +
@@ -189,7 +189,7 @@
         }
         $.get({
             type: "POST",
-            url: "http://127.0.0.1:10088/guoshi/api/v1/order/order-update",
+            url: "http://47.94.140.226/guoshi/api/v1/order/order-update",
             data:JSON.stringify({"orderId":orderId,"userId":userId,"projects":projectList}),
             contentType: "application/json; charset=utf-8",
             success: function(data){
@@ -214,7 +214,7 @@
             };
             $.ajax({
                 type: "POST",
-                url: "http://127.0.0.1:10088/guoshi/api/v1/project/update",
+                url: "http://47.94.140.226/guoshi/api/v1/project/update",
                 data:JSON.stringify(json),
                 contentType: "application/json; charset=utf-8",
                 dataType:"json",
@@ -234,7 +234,7 @@
             };
             $.ajax({
                 type: "POST",
-                url: "http://127.0.0.1:10088/guoshi/api/v1/project",
+                url: "http://47.94.140.226/guoshi/api/v1/project",
                 data:JSON.stringify(json),
                 contentType: "application/json; charset=utf-8",
                 dataType:"json",
@@ -253,7 +253,7 @@
     function GetOrderDetail(id) {
         $.get({
             type: "GET",
-            url: "http://127.0.0.1:10088/guoshi/api/v1/order/order-id?id="+id,
+            url: "http://47.94.140.226/guoshi/api/v1/order/order-id?id="+id,
             success: function(data){
                 if (data["meta"]["errCode"] == 0) {
                     order = data["data"];
