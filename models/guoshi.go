@@ -49,22 +49,24 @@ type Project struct {
 }
 
 type Order struct {
-	Id         bson.ObjectId `bson:"_id" json:"id"`
-	UserId     string        `bson:"userId" json:"userId"`
-	UserNumber string        `bson:"userNumber" json:"userNumber"`
-	IsMember   int           `bson:"isMember" json:"isMember"`   // 0 非会员 1 是会员
-	MustMoney  int           `bson:"mustMoney" json:"mustMoney"` //应收收款
-	RealMoney  float64       `bson:"realMoney" json:"realMoney"` //实际收款
-	Projects   []Project     `bson:"projects" json:"projects"`
-	Commission float64       `bson:"commission" json:"commission"` //提成
-	CreatedAt  int64         `bson:"createdAt" json:"createdAt"`
-	HuiYuan    float64       `bson:"huiYuan" json:"huiYuan"`
-	WeiXin     float64       `bson:"weiXin" json:"weiXin"`
-	ZhiFuBao   float64       `bson:"zhiFuBao" json:"zhiFuBao"`
-	XianJin    float64       `bson:"xianJin" json:"xianJin"`
-	TuanGou    float64       `bson:"tuanGou" json:"tuanGou"`
-	PayAt      int64         `bson:"payAt" json:"payAt"`
-	Status     string        `bson:"status" json:"status"` // not-pay finish
+	Id           bson.ObjectId `bson:"_id" json:"id"`
+	UserId       string        `bson:"userId" json:"userId"`
+	UserNumber   string        `bson:"userNumber" json:"userNumber"`
+	IsMember     int           `bson:"isMember" json:"isMember"`   // 0 非会员 1 是会员
+	MustMoney    int           `bson:"mustMoney" json:"mustMoney"` //应收收款
+	RealMoney    float64       `bson:"realMoney" json:"realMoney"` //实际收款
+	Projects     []Project     `bson:"projects" json:"projects"`
+	Commission   float64       `bson:"commission" json:"commission"` //提成
+	CreatedAt    int64         `bson:"createdAt" json:"createdAt"`
+	HuiYuan      float64       `bson:"huiYuan" json:"huiYuan"`
+	WeiXin       float64       `bson:"weiXin" json:"weiXin"`
+	ZhiFuBao     float64       `bson:"zhiFuBao" json:"zhiFuBao"`
+	XianJin      float64       `bson:"xianJin" json:"xianJin"`
+	TuanGou      float64       `bson:"tuanGou" json:"tuanGou"`
+	PayAt        int64         `bson:"payAt" json:"payAt"`
+	PayAtStr     string        `bson:"-" json:"payAtStr"`
+	Status       string        `bson:"status" json:"status"` // not-pay finish
+	CreatedAtStr string        `bson:"-" json:"createdAtStr"`
 }
 
 type OrderReq struct {
@@ -103,4 +105,15 @@ type StatsData struct {
 	XianJin     float64 `json:"xianJin" xson:"现金"`
 	TuanGou     float64 `json:"tuanGou" xson:"团购"`
 	RealMonry   float64 `json:"realMonry" xson:"合计"`
+}
+
+type OrderUpdate struct {
+	OrderId  string          `json:"orderId"`
+	UserId   string          `json:"userId"`
+	Projects []OrderProjects `json:"projects"`
+}
+
+type OrderProjects struct {
+	ProjectId   string `json:"projectId"`
+	IsDianZhong bool   `json:"isDianZhong"`
 }

@@ -63,18 +63,20 @@ type User struct {
 }
 
 type Order struct {
-	Id         string    `json:"id"`
-	UserId     string    `json:"userId"`
-	UserNumber string    `json:"userNumber"`
-	IsMember   int       `json:"isMember"`  // 0 非会员 1 是会员
-	MustMoney  int       `json:"mustMoney"` //应收收款
-	RealMoney  int       `json:"realMoney"` //实际收款
-	Projects   []Project `json:"projects"`
-	PayMethod  int       `json:"payMethod"`  //收款方式 1 现金 2 微信 3 支付宝
-	Commission float64   `json:"commission"` //提成
-	CreatedAt  int64     `json:"createdAt"`
-	PayAt      int64     `json:"payAt"`
-	Status     string    `json:"status"` // not-pay finish
+	Id           string    `json:"id"`
+	UserId       string    `json:"userId"`
+	UserNumber   string    `json:"userNumber"`
+	IsMember     int       `json:"isMember"`  // 0 非会员 1 是会员
+	MustMoney    int       `json:"mustMoney"` //应收收款
+	RealMoney    int       `json:"realMoney"` //实际收款
+	Projects     []Project `json:"projects"`
+	PayMethod    int       `json:"payMethod"`  //收款方式 1 现金 2 微信 3 支付宝
+	Commission   float64   `json:"commission"` //提成
+	CreatedAt    int64     `json:"createdAt"`
+	CreatedAtStr string    `json:"createdAtStr"`
+	PayAt        int64     `json:"payAt"`
+	PayAtStr     string    `json:"payAtStr"`
+	Status       string    `json:"status"` // not-pay finish
 }
 
 type Project struct {
@@ -141,10 +143,39 @@ type OrderBaoBiaoController struct {
 	beego.Controller
 }
 
+type OrderListController struct {
+	beego.Controller
+}
+
 type BaoBiaoReq struct {
 	Begin      int64
 	End        int64
 	UserNumber []string
+}
+
+func (c *OrderListController) Get() {
+	userNumber := c.Ctx.Request.URL.Query().Get("userNumber")
+	timeStr := c.Ctx.Request.URL.Query().Get("timeStr")
+	var data OrderResp
+	if userNumber != "" && timeStr != "" {
+		body, err := HttpGet(fmt.Sprintf("http://127.0.0.1:10088/guoshi/api/v1/order/order-list?userNumber=%s&timeStr=%s", userNumber, timeStr))
+		if err != nil {
+			return
+		}
+		json.Unmarshal(body, &data)
+		if len(data.Data) > 0 {
+			for k, v := range data.Data {
+				data.Data[k].CreatedAtStr = time.Unix(v.CreatedAt, 0).Format("2006-01-02 15:04:05")
+
+				data.Data[k].PayAtStr = "暂未支付"
+				if v.PayAt != 0 {
+					data.Data[k].PayAtStr = time.Unix(v.PayAt, 0).Format("2006-01-02 15:04:05")
+				}
+			}
+		}
+	}
+	c.Data["Orders"] = data.Data
+	c.TplName = "order-list.html"
 }
 
 func (c *OrderBaoBiaoController) Get() {
@@ -153,7 +184,7 @@ func (c *OrderBaoBiaoController) Get() {
 
 func (c *OrderJishiController) Get() {
 	userNumber := c.Ctx.Request.URL.Query().Get("userNumber")
-	body, err := HttpGet(fmt.Sprintf("http://47.94.140.226/guoshi/api/v1/user/user-pro?number=%s", userNumber))
+	body, err := HttpGet(fmt.Sprintf("http://127.0.0.1:10088/guoshi/api/v1/user/user-pro?number=%s", userNumber))
 	if err != nil {
 		return
 	}
@@ -163,7 +194,7 @@ func (c *OrderJishiController) Get() {
 	c.Data["UserInfo"] = data.Data.UserInfo
 	c.Data["UserProjects"] = data.Data.UserProjects
 
-	body, err = HttpGet("http://47.94.140.226/guoshi/api/v1/project/list")
+	body, err = HttpGet("http://127.0.0.1:10088/guoshi/api/v1/project/list")
 	if err != nil {
 		return
 	}
@@ -174,7 +205,7 @@ func (c *OrderJishiController) Get() {
 }
 
 func (c *OrderProjectController) Get() {
-	body, err := HttpGet("http://47.94.140.226/guoshi/api/v1/project/list")
+	body, err := HttpGet("http://127.0.0.1:10088/guoshi/api/v1/project/list")
 	if err != nil {
 		return
 	}
@@ -191,7 +222,7 @@ func (c *UserLoginController) Get() {
 func (c *OrderQianTaiController) Get() {
 	userNumber := c.Ctx.Request.URL.Query().Get("userNumber")
 	fmt.Println(userNumber)
-	body, err := HttpGet(fmt.Sprintf("http://47.94.140.226/guoshi/api/v1/order/user?number=%s", userNumber))
+	body, err := HttpGet(fmt.Sprintf("http://127.0.0.1:10088/guoshi/api/v1/order/user?number=%s", userNumber))
 	if err != nil {
 		return
 	}
@@ -224,7 +255,7 @@ func (c *OrderIndexController) Get() {
 	userNumber := c.Ctx.Request.URL.Query().Get("userNumber")
 	pwd := c.Ctx.Request.URL.Query().Get("pwd")
 
-	body, err := HttpGet(fmt.Sprintf("http://47.94.140.226/guoshi/api/v1/user/user/login?userNumber=%s&pwd=%s", userNumber, pwd))
+	body, err := HttpGet(fmt.Sprintf("http://127.0.0.1:10088/guoshi/api/v1/user/user/login?userNumber=%s&pwd=%s", userNumber, pwd))
 	if err != nil {
 		return
 	}
@@ -242,7 +273,7 @@ func (c *JiShiController) Get() {
 func (c *JiShiNotPayController) Get() {
 	userNumber := c.Ctx.Request.URL.Query().Get("userNumber")
 	fmt.Println(userNumber)
-	body, err := HttpGet(fmt.Sprintf("http://47.94.140.226/guoshi/api/v1/order/user?number=%s", userNumber))
+	body, err := HttpGet(fmt.Sprintf("http://127.0.0.1:10088/guoshi/api/v1/order/user?number=%s", userNumber))
 	if err != nil {
 		return
 	}
@@ -286,7 +317,7 @@ func (c *JiShiPayController) Get() {
 		begin = time.Date(now.Year(), now.Month(), 1, 0, 0, 0, 0, time.Local).Unix()
 		end = now.Unix()
 	}
-	body, err := HttpGet(fmt.Sprintf("http://47.94.140.226/guoshi/api/v1/order/wage?begin=%s&end=%s&userNumber=%s", strconv.Itoa(int(begin)), strconv.Itoa(int(end)), userNumber))
+	body, err := HttpGet(fmt.Sprintf("http://127.0.0.1:10088/guoshi/api/v1/order/wage?begin=%s&end=%s&userNumber=%s", strconv.Itoa(int(begin)), strconv.Itoa(int(end)), userNumber))
 	if err != nil {
 		return
 	}

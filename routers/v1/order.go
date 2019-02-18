@@ -33,6 +33,9 @@ func (u *OrderRouter) Load(group *gin.RouterGroup) {
 
 	group.GET("/download", DownloadHandler)
 
+	group.GET("/order-list", OrderListHandler)
+	group.GET("/order-id", OrderDetailHandler)
+	group.POST("/order-update", OrderUpdateHandler)
 }
 
 func CreatedOrderHandler(c *gin.Context) {
@@ -358,5 +361,92 @@ func download(begin, end int64) (newResp []*models.StatsData, err error) {
 		RealMonry:   realMoney,
 	}
 	newResp = append(newResp, stats)
+	return
+}
+
+func OrderListHandler(c *gin.Context){
+	timeStr := c.Query("timeStr")
+	userNumber := c.Query("userNumber")
+	if timeStr == "" || userNumber == "" {
+		c.AbortWithStatusJSON(http.StatusOK, consts.RespErrorParamsInvalid)
+		return
+	}
+	beginTime, err := time.Parse("2006-01-02", timeStr)
+	if err != nil {
+		c.AbortWithStatusJSON(http.StatusOK, consts.RespErrorParamsInvalid)
+		return
+	}
+	endTime := beginTime.AddDate(0, 0, 1)
+	var orders []models.Order
+	err = app.GetApp().Mongo.C(models.Order_C).
+		Find(bson.M{"userNumber":userNumber, "createdAt":bson.M{"$gte":beginTime.Unix(),"$lte":endTime.Unix()}}).All(&orders)
+	if err != nil {
+		c.AbortWithStatusJSON(http.StatusOK, consts.RespErrorGetFail)
+		return
+	}
+	utils.JSON(orders, c)
+	return
+}
+
+func OrderDetailHandler(c *gin.Context) {
+	id := c.Query("id")
+	if id == "" {
+		c.AbortWithStatusJSON(http.StatusOK, consts.RespErrorParamsInvalid)
+		return
+	}
+	var order models.Order
+	err := app.GetApp().Mongo.C(models.Order_C).
+		Find(bson.M{"_id":bson.ObjectIdHex(id)}).One(&order)
+	if err != nil {
+		c.AbortWithStatusJSON(http.StatusOK, consts.RespErrorGetFail)
+		return
+	}
+	order.CreatedAtStr = time.Unix(order.CreatedAt, 0).Format("2006-01-02 15:04:05")
+	order.PayAtStr = "暂未支付"
+	if order.PayAt != 0 {
+		order.PayAtStr = time.Unix(order.PayAt, 0).Format("2006-01-02 15:04:05")
+	}
+	utils.JSON(order, c)
+	return
+}
+
+func OrderUpdateHandler(c *gin.Context) {
+	var projects models.OrderUpdate
+	if err := c.BindJSON(&projects); err != nil {
+		c.AbortWithStatusJSON(http.StatusOK, consts.RespErrorParamsInvalid)
+		return
+	}
+	var mustMoney int
+	var commission float64
+	var pros []models.Project
+	for _, v := range projects.Projects {
+		var pro models.Project
+		err := app.GetApp().Mongo.C(models.Project_C).Find(bson.M{"_id": bson.ObjectIdHex(v.ProjectId)}).One(&pro)
+		if err != nil {
+			c.AbortWithStatusJSON(http.StatusOK, consts.RespErrorCreatedFail)
+			return
+		}
+		var userPro models.UserProject
+		err = app.GetApp().Mongo.C(models.User_Pro_C).Find(bson.M{"userId": projects.UserId, "projectId": v.ProjectId}).One(&userPro)
+		if err != nil {
+			c.AbortWithStatusJSON(http.StatusOK, consts.RespErrorCreatedFail)
+			return
+		}
+		if v.IsDianZhong == true {
+			pro.IsDianZhong = 1
+		}
+		pro.Status = "default"
+		pros =append(pros, pro)
+		commission = commission + userPro.ComeLv
+		mustMoney += pro.Money
+	}
+	err := app.GetApp().Mongo.C(models.Order_C).
+		Update(bson.M{"_id":bson.ObjectIdHex(projects.OrderId)},
+		bson.M{"$set":bson.M{"mustMoney":mustMoney,"commission":commission,"projects":pros}})
+	if err != nil {
+		c.AbortWithStatusJSON(http.StatusOK, consts.RespErrorUpdateFail)
+		return
+	}
+	utils.JSON("success", c)
 	return
 }

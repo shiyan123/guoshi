@@ -17,4 +17,5 @@ func init() {
 	beego.Router("/order/jishi", &controllers.OrderJishiController{})
 	beego.Router("/order/project", &controllers.OrderProjectController{})
 	beego.Router("/order/baobiao", &controllers.OrderBaoBiaoController{})
+	beego.Router("/order/order-list", &controllers.OrderListController{})
 }

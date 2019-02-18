@@ -33,6 +33,7 @@
                     <li><a href="http://47.94.140.226/order/jishi">技师管理</a></li>
                     <li><a href="http://47.94.140.226/order/project">项目管理</a></li>
                     <li><a href="http://47.94.140.226/order/baobiao">报表管理</a></li>
+                    <li><a href="http://47.94.140.226/order/order-list">订单管理</a></li>
                 </ul>
             </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->
@@ -48,7 +49,7 @@
                         <input id= "userNumber" type="text" class="form-control" placeholder="请输入技师编号">
                         <span class="input-group-btn">
                                 <button class="btn btn-default" type="button" onclick="javascript:window.location.href='http://47.94.140.226/order/jishi?userNumber='+$('#userNumber').val()">点击查询</button>
-                            </span>
+                        </span>
                     </div>
                 </div>
             </div>
@@ -169,7 +170,7 @@
         };
         $.ajax({
             type: "POST",
-            url: "http://47.94.140.226/guoshi/api/v1/user/update",
+            url: "http://127.0.0.1:10088/guoshi/api/v1/user/update",
             data:JSON.stringify(json),
             contentType: "application/json; charset=utf-8",
             dataType:"json",
@@ -210,7 +211,7 @@
         };
         $.ajax({
             type: "POST",
-            url: "http://47.94.140.226/guoshi/api/v1/user",
+            url: "http://127.0.0.1:10088/guoshi/api/v1/user",
             data:JSON.stringify(json),
             contentType: "application/json; charset=utf-8",
             dataType:"json",
@@ -251,7 +252,7 @@
             };
             $.ajax({
                 type: "POST",
-                url: "http://47.94.140.226/guoshi/api/v1/user/user-pro",
+                url: "http://127.0.0.1:10088/guoshi/api/v1/user/user-pro",
                 data:JSON.stringify(json),
                 contentType: "application/json; charset=utf-8",
                 dataType:"json",
@@ -282,7 +283,7 @@
             };
             $.ajax({
                 type: "POST",
-                url: "http://47.94.140.226/guoshi/api/v1/user/user-pro/update",
+                url: "http://127.0.0.1:10088/guoshi/api/v1/user/user-pro/update",
                 data:JSON.stringify(json),
                 contentType: "application/json; charset=utf-8",
                 dataType:"json",
