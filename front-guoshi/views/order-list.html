@@ -68,8 +68,6 @@
                         <th>技师编号</th>
                         <th>状态</th>
                         <th>是否会员</th>
-                        <th>应收金额</th>
-                        <th>实际收款</th>
                         <th>提成</th>
                         <th>下单时间</th>
                         <th>结账时间</th>
@@ -92,8 +90,6 @@
                         {{else if eq .IsMember 1}}
                             <td>会员</td>
                         {{end}}
-                        <td>{{ .MustMoney }}</td>
-                        <td>{{ .RealMoney }}</td>
                         <td>{{ .Commission }}</td>
                         <td>{{ .CreatedAtStr }}</td>
                         <td>{{ .PayAtStr }}</td>
