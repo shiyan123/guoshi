@@ -305,6 +305,8 @@ func (c *JiShiPayController) Get() {
 	userNumber := c.Ctx.Request.URL.Query().Get("userNumber")
 	day := c.Ctx.Request.URL.Query().Get("day")
 	month := c.Ctx.Request.URL.Query().Get("month")
+	beginStr := c.Ctx.Request.URL.Query().Get("begin")
+	endStr := c.Ctx.Request.URL.Query().Get("end")
 
 	var begin int64
 	var end int64
@@ -316,6 +318,12 @@ func (c *JiShiPayController) Get() {
 	if month != "" {
 		begin = time.Date(now.Year(), now.Month(), 1, 0, 0, 0, 0, time.Local).Unix()
 		end = now.Unix()
+	}
+	if beginStr != "" && endStr != "" {
+		beginTime, _ := time.ParseInLocation("2006-01-02", beginStr, time.Local)
+		endTime, _ := time.ParseInLocation("2006-01-02", endStr, time.Local)
+		begin = beginTime.Unix()
+		end = endTime.Unix()
 	}
 	body, err := HttpGet(fmt.Sprintf("http://47.94.140.226/guoshi/api/v1/order/wage?begin=%s&end=%s&userNumber=%s", strconv.Itoa(int(begin)), strconv.Itoa(int(end)), userNumber))
 	if err != nil {

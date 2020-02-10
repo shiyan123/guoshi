@@ -30,6 +30,22 @@
         <button type="button" class="btn btn-primary btn-sm" onclick="month()">本月</button>
         <input  id="userNumber" type="text" value="{{ .UserNumber }}" style="display:none;">
     </div>
+    <div class="row">
+        <div class="col-lg-3">
+        </div>
+        <div class="col-lg-3">
+            <label for="userId">开始时间</label>
+            <input size="16" type="text" id="datetimeStart" readonly class="form_datetime">
+        </div>
+        <div class="col-lg-3">
+            <label for="userId">结束时间</label>
+            <input size="16" type="text" id="datetimeEnd" readonly class="form_datetime">
+        </div>
+        <div class="col-lg-3">
+            <button type="button" class="btn btn-primary btn-sm" onclick="downLoad()">查询</button>
+        </div>
+
+    </div>
 
     <div class="table-responsive">
         <table class="table table-striped">
@@ -79,5 +95,42 @@
 <script>
     function month() {
         window.location.href = "http://47.94.140.226/jishi/pay?userNumber=" + $('#userNumber').val() + "&month=1";
+    }
+</script>
+<script>
+    $('.date').datetimepicker({
+        language: 'zh-CN',//显示中文
+        format: 'yyyy-mm-dd',//显示格式
+        minView: "month",//设置只显示到月份
+        initialDate: new Date(),//初始化当前日期
+        autoclose: true,//选中自动关闭
+        todayBtn: true//显示今日按钮
+    })
+</script>
+<script type="text/javascript">
+    $("#datetimeStart").datetimepicker({
+        format: 'yyyy-mm-dd',
+        minView:'month',
+        language: 'zh-CN',
+        autoclose:true
+    }).on("click",function(){
+        $('#datetimepicker').datetimepicker('setStartDate', '2018-01-01');
+    });
+
+
+    $("#datetimeEnd").datetimepicker({
+        format: 'yyyy-mm-dd',
+        minView:'month',
+        language: 'zh-CN',
+        autoclose:true,
+        startDate:new Date()
+    }).on("click",function(){
+    });
+</script>
+<script>
+    function downLoad() {
+        var timeBegin = $('#datetimeStart').val();
+        var timeEnd = $('#datetimeEnd').val();
+        window.location.href = "http://47.94.140.226/jishi/pay?userNumber=" + $('#userNumber').val() + "&begin="+timeBegin+"&end="+timeEnd;
     }
 </script>
