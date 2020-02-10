@@ -323,7 +323,7 @@ func (c *JiShiPayController) Get() {
 		beginTime, _ := time.ParseInLocation("2006-01-02", beginStr, time.Local)
 		endTime, _ := time.ParseInLocation("2006-01-02", endStr, time.Local)
 		begin = beginTime.Unix()
-		end = endTime.Unix()
+		end = endTime.AddDate(0,0,1).Unix()
 	}
 	body, err := HttpGet(fmt.Sprintf("http://47.94.140.226/guoshi/api/v1/order/wage?begin=%s&end=%s&userNumber=%s", strconv.Itoa(int(begin)), strconv.Itoa(int(end)), userNumber))
 	if err != nil {

@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="33ecf92d-7359-4801-9047-b46fe86780c9" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/front-guoshi/views/pay.html" beforeDir="false" afterPath="$PROJECT_DIR$/front-guoshi/views/pay.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-guoshi/controllers/default.go" beforeDir="false" afterPath="$PROJECT_DIR$/front-guoshi/controllers/default.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -21,13 +21,13 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="go" value="4855" />
+          <entry key="go" value="4863" />
           <entry key="html" value="4022" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Go" value="4855" />
+          <entry key="Go" value="4863" />
           <entry key="HTML" value="4022" />
         </counts>
       </usages-collector>
@@ -40,7 +40,7 @@
         <counts>
           <entry key="conf" value="1" />
           <entry key="css" value="1" />
-          <entry key="go" value="47" />
+          <entry key="go" value="48" />
           <entry key="htm" value="1" />
           <entry key="html" value="55" />
           <entry key="js" value="2" />
@@ -50,7 +50,7 @@
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CSS" value="1" />
-          <entry key="Go" value="47" />
+          <entry key="Go" value="48" />
           <entry key="HTML" value="56" />
           <entry key="JSON" value="4" />
           <entry key="JavaScript" value="2" />
@@ -61,11 +61,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/front-guoshi/views/pay.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="127" column="22" selection-start-line="127" selection-start-column="22" selection-end-line="127" selection-end-column="22" />
+            <state relative-caret-position="345">
+              <caret line="132" column="25" lean-forward="true" selection-start-line="132" selection-start-column="25" selection-end-line="132" selection-end-column="25" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/front-guoshi/controllers/default.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="358">
+              <caret line="326" column="5" lean-forward="true" selection-start-line="326" selection-start-column="5" selection-end-line="326" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -190,8 +199,8 @@
         <option value="$PROJECT_DIR$/front-guoshi/views/index.html" />
         <option value="$PROJECT_DIR$/models/guoshi.go" />
         <option value="$PROJECT_DIR$/front-guoshi/views/order-list.html" />
-        <option value="$PROJECT_DIR$/front-guoshi/controllers/default.go" />
         <option value="$PROJECT_DIR$/front-guoshi/views/pay.html" />
+        <option value="$PROJECT_DIR$/front-guoshi/controllers/default.go" />
       </list>
     </option>
   </component>
@@ -613,13 +622,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/front-guoshi/controllers/default.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="312" column="21" lean-forward="true" selection-start-line="312" selection-start-column="21" selection-end-line="312" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/front-guoshi/views/baobiao.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="185">
@@ -629,8 +631,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/front-guoshi/views/pay.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="127" column="22" selection-start-line="127" selection-start-column="22" selection-end-line="127" selection-end-column="22" />
+        <state relative-caret-position="345">
+          <caret line="132" column="25" lean-forward="true" selection-start-line="132" selection-start-column="25" selection-end-line="132" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/front-guoshi/controllers/default.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="358">
+          <caret line="326" column="5" lean-forward="true" selection-start-line="326" selection-start-column="5" selection-end-line="326" selection-end-column="5" />
         </state>
       </provider>
     </entry>
