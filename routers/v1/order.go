@@ -321,7 +321,7 @@ func download(begin, end int64) (newResp []*models.StatsData, err error) {
 				} else {
 					stats := &models.StatsData{
 						TimeStr:     ts.Format("2006-01-02"),
-						UserNumber:  v.Number,
+						UserNumber:  userIdMap[n.UserId],
 						ProJectName: p.Name,
 						PayAt:       time.Unix(n.PayAt, 0).Format("2006-01-02 15:04:05"),
 						Commission:  0,
