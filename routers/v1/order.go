@@ -274,10 +274,13 @@ func download(begin, end int64) (newResp []*models.StatsData, err error) {
 	beginTime := time.Unix(int64(begin), 0)
 	endTime := time.Unix(int64(end), 0)
 	var users []models.User
+
+	fmt.Println(">>>>>>>>>>查询用户开始时间", time.Now().Unix())
 	err = app.GetApp().Mongo.C(models.User_C).Find(nil).All(&users)
 	if err != nil {
 		return
 	}
+	fmt.Println(">>>>>>>>>>查询用户结束时间", time.Now().Unix())
 
 	for ts := beginTime; ts.Before(endTime); ts = ts.Add(24 * time.Hour) {
 		begin := ts
@@ -288,11 +291,13 @@ func download(begin, end int64) (newResp []*models.StatsData, err error) {
 				continue
 			}
 			var orders []models.Order
+			fmt.Println(">>>>>>>>>>查询订单开始时间", time.Now().Unix())
 			err := app.GetApp().Mongo.C(models.Order_C).Find(bson.M{"userId": v.Id.Hex(), "status": "finish", "payAt": bson.M{"$gte": begin.Unix(), "$lte": end.Unix()}}).All(&orders)
 			if err != nil {
 				fmt.Println(err)
 				return nil, err
 			}
+			fmt.Println(">>>>>>>>>>查询订单结束时间", time.Now().Unix())
 			for _, n := range orders {
 				for l, p := range n.Projects {
 					if l == 0 {
