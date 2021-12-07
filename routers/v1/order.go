@@ -282,59 +282,110 @@ func download(begin, end int64) (newResp []*models.StatsData, err error) {
 	}
 	fmt.Println(">>>>>>>>>>查询用户结束时间", time.Now().Unix())
 
+	var userIds []string
+	userIdMap := make(map[string]string, 0)
+	for _, v := range users {
+		if v.Type == 3 {
+			userIdMap[v.Id.Hex()] = v.Number
+			userIds = append(userIds, v.Id.Hex())
+		}
+	}
+
 	for ts := beginTime; ts.Before(endTime); ts = ts.Add(24 * time.Hour) {
 		begin := ts
 		end := ts.Add(24 * time.Hour)
 
-		for _, v := range users {
-			if v.Type != 3 {
-				continue
-			}
-			var orders []models.Order
-			fmt.Println(">>>>>>>>>>查询订单开始时间", time.Now().Unix())
-			err := app.GetApp().Mongo.C(models.Order_C).Find(bson.M{"userId": v.Id.Hex(), "status": "finish", "payAt": bson.M{"$gte": begin.Unix(), "$lte": end.Unix()}}).All(&orders)
-			if err != nil {
-				fmt.Println(err)
-				return nil, err
-			}
-			fmt.Println(">>>>>>>>>>查询订单结束时间", time.Now().Unix())
-			for _, n := range orders {
-				for l, p := range n.Projects {
-					if l == 0 {
-						stats := &models.StatsData{
-							TimeStr:     ts.Format("2006-01-02"),
-							UserNumber:  v.Number,
-							ProJectName: p.Name,
-							PayAt:       time.Unix(n.PayAt, 0).Format("2006-01-02 15:04:05"),
-							Commission:  n.Commission,
-							HuiYuan:     n.HuiYuan,
-							WeiXin:      n.WeiXin,
-							ZhiFuBao:    n.ZhiFuBao,
-							XianJin:     n.XianJin,
-							TuanGou:     n.TuanGou,
-							RealMonry:   n.RealMoney,
-						}
-						newResp = append(newResp, stats)
-					} else {
-						stats := &models.StatsData{
-							TimeStr:     ts.Format("2006-01-02"),
-							UserNumber:  v.Number,
-							ProJectName: p.Name,
-							PayAt:       time.Unix(n.PayAt, 0).Format("2006-01-02 15:04:05"),
-							Commission:  0,
-							HuiYuan:     0,
-							WeiXin:      0,
-							ZhiFuBao:    0,
-							XianJin:     0,
-							TuanGou:     0,
-							RealMonry:   0,
-						}
-						newResp = append(newResp, stats)
+		var orders []models.Order
+		err := app.GetApp().Mongo.C(models.Order_C).Find(bson.M{"userId": bson.M{"$in": userIds}, "status": "finish", "payAt": bson.M{"$gte": begin.Unix(), "$lte": end.Unix()}}).Sort("userNumber", "payAt").All(&orders)
+		if err != nil {
+			fmt.Println(err)
+			return nil, err
+		}
+		for _, n := range orders {
+			for l, p := range n.Projects {
+				if l == 0 {
+					stats := &models.StatsData{
+						TimeStr:     ts.Format("2006-01-02"),
+						UserNumber:  userIdMap[n.UserId],
+						ProJectName: p.Name,
+						PayAt:       time.Unix(n.PayAt, 0).Format("2006-01-02 15:04:05"),
+						Commission:  n.Commission,
+						HuiYuan:     n.HuiYuan,
+						WeiXin:      n.WeiXin,
+						ZhiFuBao:    n.ZhiFuBao,
+						XianJin:     n.XianJin,
+						TuanGou:     n.TuanGou,
+						RealMonry:   n.RealMoney,
 					}
-
+					newResp = append(newResp, stats)
+				} else {
+					stats := &models.StatsData{
+						TimeStr:     ts.Format("2006-01-02"),
+						UserNumber:  v.Number,
+						ProJectName: p.Name,
+						PayAt:       time.Unix(n.PayAt, 0).Format("2006-01-02 15:04:05"),
+						Commission:  0,
+						HuiYuan:     0,
+						WeiXin:      0,
+						ZhiFuBao:    0,
+						XianJin:     0,
+						TuanGou:     0,
+						RealMonry:   0,
+					}
+					newResp = append(newResp, stats)
 				}
+
 			}
 		}
+		//for _, v := range users {
+		//	if v.Type != 3 {
+		//		continue
+		//	}
+		//	var orders []models.Order
+		//	fmt.Println(">>>>>>>>>>查询订单开始时间", time.Now().Unix())
+		//	err := app.GetApp().Mongo.C(models.Order_C).Find(bson.M{"userId": v.Id.Hex(), "status": "finish", "payAt": bson.M{"$gte": begin.Unix(), "$lte": end.Unix()}}).All(&orders)
+		//	if err != nil {
+		//		fmt.Println(err)
+		//		return nil, err
+		//	}
+		//	fmt.Println(">>>>>>>>>>查询订单结束时间", time.Now().Unix())
+		//	for _, n := range orders {
+		//		for l, p := range n.Projects {
+		//			if l == 0 {
+		//				stats := &models.StatsData{
+		//					TimeStr:     ts.Format("2006-01-02"),
+		//					UserNumber:  v.Number,
+		//					ProJectName: p.Name,
+		//					PayAt:       time.Unix(n.PayAt, 0).Format("2006-01-02 15:04:05"),
+		//					Commission:  n.Commission,
+		//					HuiYuan:     n.HuiYuan,
+		//					WeiXin:      n.WeiXin,
+		//					ZhiFuBao:    n.ZhiFuBao,
+		//					XianJin:     n.XianJin,
+		//					TuanGou:     n.TuanGou,
+		//					RealMonry:   n.RealMoney,
+		//				}
+		//				newResp = append(newResp, stats)
+		//			} else {
+		//				stats := &models.StatsData{
+		//					TimeStr:     ts.Format("2006-01-02"),
+		//					UserNumber:  v.Number,
+		//					ProJectName: p.Name,
+		//					PayAt:       time.Unix(n.PayAt, 0).Format("2006-01-02 15:04:05"),
+		//					Commission:  0,
+		//					HuiYuan:     0,
+		//					WeiXin:      0,
+		//					ZhiFuBao:    0,
+		//					XianJin:     0,
+		//					TuanGou:     0,
+		//					RealMonry:   0,
+		//				}
+		//				newResp = append(newResp, stats)
+		//			}
+		//
+		//		}
+		//	}
+		//}
 	}
 	var huiyuan float64
 	var weixin float64

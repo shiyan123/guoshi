@@ -117,3 +117,9 @@ type OrderProjects struct {
 	ProjectId   string `json:"projectId"`
 	IsDianZhong bool   `json:"isDianZhong"`
 }
+
+type UserOrders struct {
+	UserId string
+	Number string
+	Orders []Order
+}
